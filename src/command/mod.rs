@@ -23,7 +23,7 @@ pub struct Init {}
 #[derive(Parser, Debug)]
 pub struct Open {
     #[clap(short, long)]
-    all: Boolean,
+    all: bool,
 }
 
 pub trait Run {
