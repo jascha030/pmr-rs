@@ -6,10 +6,6 @@ use crate::resource::linked::Linked;
 
 use std::io::Result;
 
-enum ResourceTypes {}
-
-struct ResourceType {}
-
 pub struct Resource {
     name: String,
     url: String,
@@ -17,13 +13,13 @@ pub struct Resource {
 
 impl Named for Resource {
     fn name(&self) -> String {
-        self.name
+        self.name.to_string()
     }
 }
 
 impl Linked for Resource {
     fn url(&self) -> String {
-        self.url
+        self.url.to_string()
     }
 
     fn open() -> Result<()> {
