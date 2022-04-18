@@ -1,5 +1,3 @@
-mod init;
-
 use std::io::Result;
 use crate::command::{Run, Init};
 
