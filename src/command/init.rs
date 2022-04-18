@@ -1,8 +1,9 @@
 mod init;
 
 use std::io::Result;
+use crate::command::{Run, Init};
 
-impl Run for init {
+impl Run for Init {
     fn run(&self) -> Result<()> {
         //let mut buffer String::new();
         //let mut stdin = io::stdin();
