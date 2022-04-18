@@ -1,3 +1,6 @@
+mod command;
+mod resource;
+
 use std::io::Result;
 
 fn main() -> Result<()> {
