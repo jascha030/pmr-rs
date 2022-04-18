@@ -1,8 +1,8 @@
-pub mod named;
 pub mod linked;
+pub mod named;
 
-use crate::resource::named::Named;
 use crate::resource::linked::Linked;
+use crate::resource::named::Named;
 
 use std::io::Result;
 
@@ -23,6 +23,6 @@ impl Linked for Resource {
     }
 
     fn open() -> Result<()> {
-       Ok(()) 
+        Ok(())
     }
 }

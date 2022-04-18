@@ -34,8 +34,7 @@ impl Run for Command {
     fn run(&self) -> Result<()> {
         match self {
             Command::Init(cmd) => cmd.run(),
-            Command::Open(cmd) => cmd.run()
+            Command::Open(cmd) => cmd.run(),
         }
     }
 }
-
