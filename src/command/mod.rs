@@ -1,3 +1,6 @@
+pub mod init;
+pub mod open;
+
 use clap::Parser;
 use std::io::Result;
 
@@ -26,3 +29,13 @@ pub struct Open {
 pub trait Run {
     fn run(&self) -> Result<()>;
 }
+
+impl Run for Command {
+    fn run(&self) -> Result<()> {
+        match self {
+            Command::Init(cmd) => cmd.run(),
+            Command::Open(cmd) => cmd.run()
+        }
+    }
+}
+
