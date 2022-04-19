@@ -3,5 +3,5 @@ use std::io::Result;
 pub trait Linked {
     fn url(&self) -> String;
 
-    fn open() -> Result<()>;
+    fn open(&self) -> Result<()>;
 }

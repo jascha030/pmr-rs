@@ -1,9 +1,11 @@
 pub mod linked;
 pub mod named;
+pub mod read;
+pub mod write;
 
 use crate::resource::linked::Linked;
 use crate::resource::named::Named;
-
+use open;
 use std::io::Result;
 
 pub struct Resource {
@@ -22,7 +24,9 @@ impl Linked for Resource {
         self.url.to_string()
     }
 
-    fn open() -> Result<()> {
+    fn open(&self) -> Result<()> {
+        open::that(self.url()).unwrap();
+
         Ok(())
     }
 }
