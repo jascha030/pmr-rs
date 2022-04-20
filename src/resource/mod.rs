@@ -7,7 +7,9 @@ use crate::resource::linked::Linked;
 use crate::resource::named::Named;
 use open;
 use std::io::Result;
+use serde_derive::{Serialize, Deserialize};
 
+#[derive(Serialize, Deserialize)]
 pub struct Resource {
     name: String,
     url: String,
