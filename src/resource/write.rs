@@ -1,5 +1,5 @@
-use std::io::{Result, Write};
 use std::fs::OpenOptions;
+use std::io::{Result, Write};
 
 use super::Resource;
 
