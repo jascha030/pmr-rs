@@ -12,7 +12,7 @@ use std::io::Result;
     about = "Manage Project Management Resources with a TOML file.", 
     long_about = None
 )]
-enum Command {
+pub enum Command {
     Init(Init),
     Open(Open),
 }
