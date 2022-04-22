@@ -6,13 +6,13 @@ pub mod write;
 use crate::resource::linked::Linked;
 use crate::resource::named::Named;
 use open;
+use serde_derive::{Deserialize, Serialize};
 use std::io::Result;
-use serde_derive::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Resource {
-    name: String,
-    url: String,
+    pub name: String,
+    pub url: String,
 }
 
 impl Named for Resource {
@@ -32,3 +32,6 @@ impl Linked for Resource {
         Ok(())
     }
 }
+
+
+
