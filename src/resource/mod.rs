@@ -12,7 +12,14 @@ use std::io::Result;
 #[derive(Serialize, Deserialize)]
 pub struct Resource {
     pub name: String,
-    pub url: String,
+    pub value: String,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Config {
+    pub tasks: Resource,
+    pub time: Resource,
+    pub git: Resource,
 }
 
 impl Named for Resource {
@@ -22,16 +29,13 @@ impl Named for Resource {
 }
 
 impl Linked for Resource {
-    fn url(&self) -> String {
-        self.url.to_string()
+    fn value(&self) -> String {
+        self.value.to_string()
     }
 
     fn open(&self) -> Result<()> {
-        open::that(self.url()).unwrap();
+        open::that(self.value()).unwrap();
 
         Ok(())
     }
 }
-
-
-
