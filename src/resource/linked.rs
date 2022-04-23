@@ -1,7 +1,7 @@
 use std::io::Result;
 
 pub trait Linked {
-    fn url(&self) -> String;
+    fn value(&self) -> String;
 
     fn open(&self) -> Result<()>;
 }
