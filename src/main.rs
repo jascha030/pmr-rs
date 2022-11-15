@@ -8,23 +8,19 @@ use self::resource::write::write_toml;
 use self::resource::{Config, Resource};
 
 fn main() -> Result<()> {
-    let arr = [Resource {
-        name: "ewa".to_string(),
-        value: "https://google.com".to_string(),
-    }];
-
-    let config = Config {
-        tasks: Resource {
-            name: "test-pm".to_string(),
-            value: "http://google.com".to_string(),
-        },
-        time: Resource {
+    let config = Config::new(
+        Some(Resource {
+            name: "ewa".to_string(),
+            value: "https://google.com".to_string(),
+        }),
+        Some(Resource {
             name: "test-time".to_string(),
             value: "https://app.everhour.com".to_string(),
-        },
-    };
+        }),
+        None,
+    );
 
-    return match write_toml(&arr) {
+    return match write_toml(&config) {
         Ok(_) => Ok(()),
         Err(e) => panic!("No gucci, no bueno {:?}", e),
     };
