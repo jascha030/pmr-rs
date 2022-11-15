@@ -17,9 +17,15 @@ pub struct Resource {
 
 #[derive(Serialize, Deserialize)]
 pub struct Config {
-    pub tasks: Resource,
-    pub time: Resource,
-    pub git: Resource,
+    pub tasks: Option<Resource>,
+    pub time: Option<Resource>,
+    pub git: Option<Resource>,
+}
+
+impl Config {
+    pub fn new(tasks: Option<Resource>, time: Option<Resource>, git: Option<Resource>) -> Config {
+        Config { tasks, time, git }
+    }
 }
 
 impl Named for Resource {
