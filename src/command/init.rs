@@ -33,6 +33,8 @@ impl Run for Init {
         let mut answers: Vec<Option<Resource>> = vec![];
 
         for item in question.into_iter().enumerate() {
+            clear_stdout();
+
             let (_i, type_string): (usize, &str) = item;
             let fmt_question = format!(
                 "{} [{}]",
@@ -44,6 +46,8 @@ impl Run for Init {
                 .default(Answer::YES)
                 .yes_no()
                 .confirm();
+
+            clear_stdout();
 
             if answer == Answer::YES {
                 println!(
@@ -63,6 +67,7 @@ impl Run for Init {
         }
 
         let mut iter = answers.into_iter();
+
         let config = Config::new(
             iter.nth(0).unwrap_or(None),
             iter.nth(1).unwrap_or(None),
