@@ -76,8 +76,12 @@ impl Run for Init {
 
         return match write_toml(&config) {
             Ok(_) => {
-                println!("Resources written to `.pm.toml` successfully!");
-
+                println!(
+                    "🎉 {} {} {} 🎉",
+                    "Resources written to".bright_green(),
+                    "`.pm.toml`".bright_cyan().italic(),
+                    "successfully!!".bright_green()
+                );
                 Ok(())
             }
             Err(e) => panic!("Couldn't write config to toml {:?}", e),
