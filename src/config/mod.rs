@@ -1,6 +1,7 @@
 use serde_derive::{Serialize, Deserialize};
-
 use crate::resource::Resource;
+
+pub mod write;
 
 #[derive(Serialize, Deserialize)]
 pub struct Config {
