@@ -1,10 +1,12 @@
-pub mod init;
-pub mod open;
-
 use clap::Parser;
 use std::io::Result;
 
-#[derive(Parser, Debug)]
+use crate::resource::Resource;
+
+pub mod init;
+pub mod open;
+
+#[derive(Parser)]
 #[clap(
     name = "PMR",
     author = "Jascha030 <contact@jaschavanaalst.nl>",
@@ -17,10 +19,10 @@ pub enum Command {
     Open(Open),
 }
 
-#[derive(Parser, Debug)]
+#[derive(Parser)]
 pub struct Init {}
 
-#[derive(Parser, Debug)]
+#[derive(Parser)]
 pub struct Open {
     #[clap(short, long)]
     all: bool,
