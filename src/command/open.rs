@@ -1,8 +1,10 @@
 use std::fs::File;
-use std::io::{Result, BufReader, Read};
+use std::io::{BufReader, Read, Result};
 use std::path::Path;
 
 use crate::config::Config;
+use crate::resource::linked::Linked;
+use crate::resource::Resource;
 
 use super::{Open, Run};
 
@@ -18,7 +20,14 @@ impl Run for Open {
             buf_reader.read_to_string(&mut contents)?;
             let config: Config = toml::from_str(&contents).unwrap();
 
-            println!("{:?}", config);
+            let resources: [Option<Resource>; 3] = [config.tasks, config.time, config.git];
+
+            for res in resources {
+                match res {
+                    Some(r) => r.open().unwrap(),
+                    None => (),
+                }
+            }
         } else {
             println!("No `.pm.toml` file found in current directory.");
         }
