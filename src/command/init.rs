@@ -54,8 +54,8 @@ impl Run for Init {
                 std::io::stdin().read_line(&mut buffer)?;
 
                 answers.push(Some(Resource {
-                    name: type_string.to_string(),
-                    value: buffer.to_string(),
+                    name: ucfirst(type_string).trim().to_string(),
+                    value: buffer.trim().to_string(),
                 }));
             } else {
                 answers.push(None)
