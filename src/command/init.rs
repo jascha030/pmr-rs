@@ -25,23 +25,31 @@ fn ucfirst(s: &str) -> String {
 impl Run for Init {
     fn run(&self) -> Result<()> {
         let question: [&str; 3] = [
-            &"task management".blue().bold().to_string(),
-            &"time tracking".blue().bold().to_string(),
-            &"version management (git)".blue().bold().to_string(),
+            "task management",
+            "time tracking",
+            "version management (git)",
         ];
 
         let mut answers: Vec<Option<Resource>> = vec![];
 
         for item in question.into_iter().enumerate() {
             let (_i, type_string): (usize, &str) = item;
-            let fmt_question = format!("Do you want to add {}? [{}]", type_string, "y/n".yellow());
+            let fmt_question = format!(
+                "{} [{}]",
+                format!("Do you want to add {}?", type_string.bright_green().bold()),
+                "y/n".bright_yellow()
+            );
+
             let answer = Question::new(&fmt_question)
                 .default(Answer::YES)
                 .yes_no()
                 .confirm();
 
             if answer == Answer::YES {
-                println!("{} url: ", type_string);
+                println!(
+                    "{}",
+                    format!("{} url: ", ucfirst(type_string)).bright_yellow()
+                );
                 let mut buffer = String::new();
                 std::io::stdin().read_line(&mut buffer)?;
 
