@@ -7,6 +7,12 @@ use colored::Colorize;
 use question::{Answer, Question};
 use std::io::Result;
 
+fn clear_stdout() -> () {
+    print!("{esc}c", esc = 27 as char);
+
+    ()
+}
+
 impl Run for Init {
     fn run(&self) -> Result<()> {
         let question: [&str; 3] = [
