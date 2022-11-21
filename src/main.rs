@@ -1,5 +1,6 @@
 mod command;
 mod resource;
+mod config;
 
 use std::io::Result;
 use std::panic;
