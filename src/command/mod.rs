@@ -4,6 +4,7 @@ use std::io::Result;
 pub mod init;
 pub mod open;
 
+#[derive(Parser)]
 #[clap(
     name = "PMR",
     author = "Jascha030 <contact@jaschavanaalst.nl>",
@@ -11,7 +12,6 @@ pub mod open;
     about = "Manage Project Management Resources with a TOML file.", 
     long_about = None
 )]
-#[derive(Parser)]
 pub enum Command {
     Init(Init),
     Open(Open),
