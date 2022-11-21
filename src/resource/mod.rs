@@ -1,7 +1,6 @@
 pub mod linked;
 pub mod named;
 pub mod read;
-pub mod write;
 
 use crate::resource::linked::Linked;
 use crate::resource::named::Named;
@@ -10,6 +9,7 @@ use serde_derive::{Deserialize, Serialize};
 use std::io::Result;
 
 #[derive(Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct Resource {
     pub name: String,
     pub value: String,
