@@ -13,6 +13,15 @@ fn clear_stdout() -> () {
     ()
 }
 
+fn ucfirst(s: &str) -> String {
+    let mut characters = s.chars();
+
+    match characters.next() {
+        None => String::new(),
+        Some(f) => f.to_uppercase().collect::<String>() + characters.as_str(),
+    }
+}
+
 impl Run for Init {
     fn run(&self) -> Result<()> {
         let question: [&str; 3] = [
