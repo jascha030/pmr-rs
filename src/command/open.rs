@@ -8,16 +8,14 @@ use super::{Open, Run};
 
 impl Run for Open {
     fn run(&self) -> Result<()> {
-        let mut valid: bool;
-
-        valid = Path::new(".pm.toml").exists();
+        let valid: bool = Path::new(".pm.toml").exists();
 
         if valid == true {
-            let mut file = File::open(".pm.toml")?;
+            let file: File = File::open(".pm.toml")?;
             let mut buf_reader = BufReader::new(file);
             let mut contents = String::new();
-            buf_reader.read_to_string(&mut contents)?;
 
+            buf_reader.read_to_string(&mut contents)?;
             let config: Config = toml::from_str(&contents).unwrap();
 
             println!("{:?}", config);
