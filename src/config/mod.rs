@@ -1,9 +1,9 @@
-use serde_derive::{Serialize, Deserialize};
 use crate::resource::Resource;
+use serde_derive::{Deserialize, Serialize};
 
 pub mod write;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
     pub tasks: Option<Resource>,
     pub time: Option<Resource>,
@@ -15,5 +15,3 @@ impl Config {
         Config { tasks, time, git }
     }
 }
-
-
