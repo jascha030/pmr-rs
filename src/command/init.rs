@@ -67,11 +67,10 @@ impl Run for Init {
         }
 
         let mut iter = answers.into_iter();
-
         let config = Config::new(
-            iter.nth(0).unwrap_or(None),
-            iter.nth(1).unwrap_or(None),
-            iter.nth(2).unwrap_or(None),
+            iter.next().unwrap_or(None),
+            iter.next().unwrap_or(None),
+            iter.next().unwrap_or(None),
         );
 
         return match write_toml(&config) {
