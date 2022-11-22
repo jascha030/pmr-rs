@@ -20,17 +20,31 @@ impl Run for Open {
             let file: File = File::open(".pm.toml")?;
             let mut buf_reader = BufReader::new(file);
             let mut contents = String::new();
-
             buf_reader.read_to_string(&mut contents)?;
+
             let config: Config = toml::from_str(&contents).unwrap();
-
             let resources: [Option<Resource>; 3] = [config.tasks, config.time, config.git];
+            let choices: Vec<&str> = vec!["Task management", "Time Tracking", "Git", "All"];
 
-            for res in resources {
-                match res {
+            let selection = dialoguer::Select::new()
+                .items(&choices)
+                .default(4)
+                .interact_on_opt(&Term::stderr())?;
+
+            match selection {
+                Some(4) => {
+                    for res in resources {
+                        match res {
+                            Some(r) => r.open().unwrap(),
+                            None => (),
+                        }
+                    }
+                }
+                Some(opt) => match resources.into_iter().nth(opt).unwrap() {
                     Some(r) => r.open().unwrap(),
                     None => (),
-                }
+                },
+                None => panic!("Something went wrong..."),
             }
         }
 
