@@ -6,7 +6,7 @@ use dialoguer::console::Term;
 
 use crate::config::Config;
 use crate::resource::linked::Linked;
-use crate::resource::{self, Resource};
+use crate::resource::Resource;
 
 use super::{Open, Run};
 
