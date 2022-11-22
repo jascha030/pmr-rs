@@ -32,7 +32,7 @@ impl Run for Open {
                 .interact_on_opt(&Term::stderr())?;
 
             match selection {
-                Some(4) => {
+                Some(3) => {
                     for res in resources {
                         match res {
                             Some(r) => r.open().unwrap(),
