@@ -1,6 +1,5 @@
 pub mod linked;
 pub mod named;
-pub mod read;
 
 use crate::resource::linked::Linked;
 use crate::resource::named::Named;
