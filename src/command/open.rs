@@ -2,9 +2,11 @@ use std::fs::File;
 use std::io::{BufReader, Read, Result};
 use std::path::Path;
 
+use dialoguer::console::Term;
+
 use crate::config::Config;
 use crate::resource::linked::Linked;
-use crate::resource::Resource;
+use crate::resource::{self, Resource};
 
 use super::{Open, Run};
 
@@ -12,7 +14,9 @@ impl Run for Open {
     fn run(&self) -> Result<()> {
         let valid: bool = Path::new(".pm.toml").exists();
 
-        if valid == true {
+        if valid == false {
+            println!("No `.pm.toml` file found in current directory.");
+        } else {
             let file: File = File::open(".pm.toml")?;
             let mut buf_reader = BufReader::new(file);
             let mut contents = String::new();
@@ -28,8 +32,6 @@ impl Run for Open {
                     None => (),
                 }
             }
-        } else {
-            println!("No `.pm.toml` file found in current directory.");
         }
 
         Ok(())
