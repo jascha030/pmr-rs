@@ -4,9 +4,10 @@ use std::path::Path;
 
 use dialoguer::console::Term;
 
+use crate::config::choices::Choices;
+use crate::config::list::List;
 use crate::config::Config;
 use crate::resource::linked::Linked;
-use crate::resource::Resource;
 
 use super::{Open, Run};
 
@@ -23,26 +24,22 @@ impl Run for Open {
             buf_reader.read_to_string(&mut contents)?;
 
             let config: Config = toml::from_str(&contents).unwrap();
-            let resources: [Option<Resource>; 3] = [config.tasks, config.time, config.git];
-            let choices: Vec<&str> = vec!["Task management", "Time Tracking", "Git", "All"];
-
             let selection = dialoguer::Select::new()
-                .items(&choices)
-                .default(4)
+                .items(&config.choices() as &[_])
                 .interact_on_opt(&Term::stderr())?;
 
+            let max: usize = config.count();
             match selection {
-                Some(3) => {
-                    for res in resources {
-                        match res {
-                            Some(r) => r.open().unwrap(),
-                            None => (),
+                Some(opt) => match opt == max {
+                    true => {
+                        for res in config.list() {
+                            res.open().unwrap();
                         }
                     }
-                }
-                Some(opt) => match resources.into_iter().nth(opt).unwrap() {
-                    Some(r) => r.open().unwrap(),
-                    None => (),
+                    false => match config.list().into_iter().nth(opt) {
+                        Some(r) => r.open().unwrap(),
+                        None => (),
+                    },
                 },
                 None => panic!("Something went wrong..."),
             }

@@ -14,19 +14,6 @@ pub struct Resource {
     pub value: String,
 }
 
-#[derive(Serialize, Deserialize)]
-pub struct Config {
-    pub tasks: Option<Resource>,
-    pub time: Option<Resource>,
-    pub git: Option<Resource>,
-}
-
-impl Config {
-    pub fn new(tasks: Option<Resource>, time: Option<Resource>, git: Option<Resource>) -> Config {
-        Config { tasks, time, git }
-    }
-}
-
 impl Named for Resource {
     fn name(&self) -> String {
         self.name.to_string()
