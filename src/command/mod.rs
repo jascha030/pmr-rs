@@ -1,6 +1,7 @@
 use clap::Parser;
-use std::io::Result;
+use std::io::Error;
 
+pub mod error;
 pub mod init;
 pub mod open;
 
@@ -9,7 +10,7 @@ pub mod open;
     name = "PMR",
     author = "Jascha030 <contact@jaschavanaalst.nl>",
     version = "1.0",
-    about = "Manage Project Management Resources with a TOML file.", 
+    about = "Manage Project Management Resources with a TOML file.",
     long_about = None
 )]
 pub enum Command {
@@ -27,11 +28,11 @@ pub struct Open {
 }
 
 pub trait Run {
-    fn run(&self) -> Result<()>;
+    fn run(&self) -> Result<(), Error>;
 }
 
 impl Run for Command {
-    fn run(&self) -> Result<()> {
+    fn run(&self) -> Result<(), Error> {
         match self {
             Command::Init(cmd) => cmd.run(),
             Command::Open(cmd) => cmd.run(),
