@@ -9,7 +9,7 @@ pub mod open;
 #[clap(
     name = "PMR",
     author = "Jascha030 <contact@jaschavanaalst.nl>",
-    version = "1.0",
+    version = "0.1.0",
     about = "Manage Project Management Resources with a TOML file.",
     long_about = None
 )]

@@ -2,16 +2,22 @@ pub mod command;
 pub mod config;
 pub mod resource;
 
-use crate::command::Run;
+use crate::command::{Command, Run};
 use clap::Parser;
-use std::io::Result;
-use std::panic;
+use colored::Colorize;
+use std::process::ExitCode;
 
-use self::command::Command;
-
-fn main() -> Result<()> {
+fn main() -> ExitCode {
     return match Command::parse().run() {
-        Ok(_) => Ok(()),
-        Err(e) => panic!("Something went wrong: {:?}", e),
+        Ok(()) => ExitCode::SUCCESS,
+        Err(e) => {
+            eprintln!(
+                "{}",
+                format!("Pmr Error: {}", e.to_string().red().bold())
+                    .to_string()
+                    .red()
+            );
+            ExitCode::FAILURE
+        }
     };
 }

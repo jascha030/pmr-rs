@@ -6,16 +6,47 @@ The version mentioned above was originally intended as a prototype to be re-writ
 
 ***Up till now that is 🎉!***
 
-<sub>
-...Or Iguess up till almost that is 🎉!!
-Because this version is currently still a work in progress.
-</sub>
+## Installation
 
-### Todo
+```sh
+cargo install pmr
+```
 
-* ~~Resource struct and open in browser logic~~ ✅
-* ~~Config struct and toml parsing logic~~ ✅
-* ~~Init command~~ ✅
-* Open command 🚧 
-* Documentation 🚧
+## Commands
+
+The CLI tool consists of two console commands.
+
+### Init
+
+Use the init command to create a `.pm.toml` resource file.
+
+```sh
+Usage: pmr init: [OPTIONS]
+
+Options:
+  -h, --help Print help information
+```
+
+This will run you through a couple of questions asking if you want to add a project url for any of the following
+categories:
+
+* **Task Management**
+* **Time tracking**
+* **Git repo**
+
+### Open
+
+The open command provides quick access to your provided resources.
+
+```sh
+Usage: pmr open [OPTIONS]
+
+Options:
+  -a, --all   Open all resources
+  -h, --help  Print help information
+```
+
+## License 
+
+This composer package is an open-sourced software licensed under the [MIT License](https://github.com/jascha030/pmr-rs/blob/master/LICENSE)
 

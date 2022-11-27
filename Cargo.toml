@@ -1,7 +1,16 @@
 [package]
 name = "pmr"
+description = "A small project management CLI utility, to store project management related links."
 version = "0.1.0"
+author = ["Jascha van Aalst"]
+repository = "https://github.com/jascha030/pmr-rs"
+homepage = "https://github.com/jascha030/pmr-rs"
 edition = "2021"
+license = "MIT"
+license_file = "LICENSE"
+keywords = ["CLI", "project", "management", "TOML"]
+categories = ["command-line-utilities"]
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

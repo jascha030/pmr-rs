@@ -52,7 +52,7 @@ impl List for Config {
 
     fn list(&self) -> Vec<&Resource> {
         let mut list: Vec<&Resource> = vec![];
-        
+
         if self.tasks.is_some() {
             list.push(self.tasks.as_ref().unwrap())
         }

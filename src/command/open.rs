@@ -26,14 +26,24 @@ fn get_config() -> Result<Config, Error> {
 
             Ok(config)
         }
-        Err(e) => Err(e)
+        Err(e) => Err(e),
     }
 }
 
 impl Run for Open {
     fn run(&self) -> Result<(), Error> {
+        let all = self.all;
+
         match get_config() {
             Ok(config) => {
+                if all == true {
+                    for res in config.list() {
+                        res.open().unwrap();
+                    }
+
+                    return Ok(());
+                }
+
                 let selection = dialoguer::Select::new()
                     .items(&config.choices() as &[_])
                     .interact_on_opt(&Term::stderr())?;
@@ -55,7 +65,7 @@ impl Run for Open {
                     None => panic!("Something went wrong..."),
                 }
             }
-            Err(e) => return Err(e)
+            Err(e) => return Err(e),
         }
 
         Ok(())
