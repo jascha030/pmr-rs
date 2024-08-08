@@ -7,10 +7,8 @@ use colored::Colorize;
 use question::{Answer, Question};
 use std::io::Result;
 
-fn clear_stdout() -> () {
+fn clear_stdout() {
     print!("{esc}c", esc = 27 as char);
-
-    ()
 }
 
 fn ucfirst(s: &str) -> String {
@@ -37,8 +35,8 @@ impl Run for Init {
 
             let (_i, type_string): (usize, &str) = item;
             let fmt_question = format!(
-                "{} [{}]",
-                format!("Do you want to add {}?", type_string.bright_green().bold()),
+                "Do you want to add {}? [{}]",
+                type_string.bright_green().bold(),
                 "y/n".bright_yellow()
             );
 
@@ -73,7 +71,7 @@ impl Run for Init {
             iter.next().unwrap_or(None),
         );
 
-        return match write_toml(&config) {
+        match write_toml(&config) {
             Ok(_) => {
                 println!(
                     "🎉 {} {} {} 🎉",
@@ -84,6 +82,6 @@ impl Run for Init {
                 Ok(())
             }
             Err(e) => panic!("Couldn't write config to toml {:?}", e),
-        };
+        }
     }
 }
