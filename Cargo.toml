@@ -16,11 +16,11 @@ readme = "README.md"
 
 [dependencies]
 clap = { version = "4.0.26", features = ["derive", "cargo"] }
-open = "3.2.0"
+open = "5.0.0"
 serde = "1.0.147"
 serde_derive = "1.0.147"
 slug = "0.1.4"
-toml = "0.5.9"
+toml = "0.8.15"
 question = "0.2.2"
 colored = "2.0.0"
-dialoguer = "0.10.2"
+dialoguer = "0.11.0"
