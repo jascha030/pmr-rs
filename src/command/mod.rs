@@ -1,6 +1,7 @@
 use clap::Parser;
 use std::io::Error;
 
+pub mod add;
 pub mod error;
 pub mod init;
 pub mod open;
@@ -15,11 +16,19 @@ pub mod open;
 )]
 pub enum Command {
     Init(Init),
+    Add(Add),
     Open(Open),
 }
 
 #[derive(Parser)]
 pub struct Init {}
+
+#[derive(Parser)]
+pub struct Add {
+    #[clap(short, long)]
+    name: Option<String>,
+    value: Vec<String>,
+}
 
 #[derive(Parser)]
 pub struct Open {
@@ -35,6 +44,7 @@ impl Run for Command {
     fn run(&self) -> Result<(), Error> {
         match self {
             Command::Init(cmd) => cmd.run(),
+            Command::Add(cmd) => cmd.run(),
             Command::Open(cmd) => cmd.run(),
         }
     }
