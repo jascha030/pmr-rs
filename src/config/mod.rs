@@ -13,11 +13,23 @@ pub struct Config {
     pub tasks: Option<Resource>,
     pub time: Option<Resource>,
     pub git: Option<Resource>,
+    pub resources: Option<Vec<Resource>>,
 }
 
 impl Config {
-    pub fn new(tasks: Option<Resource>, time: Option<Resource>, git: Option<Resource>) -> Config {
-        Config { tasks, time, git }
+    /// Creates a new [`Config`].
+    pub fn new(
+        tasks: Option<Resource>,
+        time: Option<Resource>,
+        git: Option<Resource>,
+        resources: Option<Vec<Resource>>,
+    ) -> Config {
+        Config {
+            tasks,
+            time,
+            git,
+            resources,
+        }
     }
 }
 
@@ -35,6 +47,12 @@ impl Choices for Config {
 
         if self.git.is_some() {
             choices.push(self.git.as_ref().unwrap().name())
+        }
+
+        if self.resources.is_some() {
+            for res in self.resources.as_ref().unwrap() {
+                choices.push(res.name())
+            }
         }
 
         if !choices.is_empty() {
@@ -63,6 +81,12 @@ impl List for Config {
 
         if self.git.is_some() {
             list.push(self.git.as_ref().unwrap())
+        }
+
+        if self.resources.is_some() {
+            for res in self.resources.as_ref().unwrap() {
+                list.push(res)
+            }
         }
 
         list
