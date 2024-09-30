@@ -65,11 +65,17 @@ impl Run for Init {
         }
 
         let mut iter = answers.into_iter();
-        let config = Config::new(
-            iter.next().unwrap_or(None),
-            iter.next().unwrap_or(None),
-            iter.next().unwrap_or(None),
-        );
+        let config = {
+            let tasks = iter.next().unwrap_or(None);
+            let time = iter.next().unwrap_or(None);
+            let git = iter.next().unwrap_or(None);
+            Config {
+                tasks,
+                time,
+                git,
+                resources,
+            }
+        };
 
         match write_toml(&config) {
             Ok(_) => {
