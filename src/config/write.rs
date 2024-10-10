@@ -7,6 +7,7 @@ pub fn write_toml(config: &Config) -> Result<()> {
     let mut file = OpenOptions::new()
         .write(true)
         .create(true)
+        .truncate(true)
         .open(".pm.toml")
         .unwrap();
 
