@@ -65,25 +65,28 @@ impl Run for Init {
         }
 
         let mut iter = answers.into_iter();
+
         let config = {
             let tasks = iter.next().unwrap_or(None);
             let time = iter.next().unwrap_or(None);
             let git = iter.next().unwrap_or(None);
+
             Config {
                 tasks,
                 time,
                 git,
-                resources,
+                resources: None,
             }
         };
 
         match write_toml(&config) {
             Ok(_) => {
                 println!(
-                    "🎉 {} {} {} 🎉",
+                    "🎉 {} {} {} 🎉, if you wish to add any other resources, you can use the {} command.",
                     "Resources written to".bright_green(),
                     "`.pm.toml`".bright_cyan().italic(),
-                    "successfully!!".bright_green()
+                    "successfully!!".bright_green(),
+                    "`pmr add`".bright_yellow()
                 );
                 Ok(())
             }

@@ -1,12 +1,14 @@
-use self::choices::Choices;
-use self::list::List;
 use crate::resource::named::Named;
 use crate::resource::Resource;
 use serde_derive::{Deserialize, Serialize};
 
+use self::choices::Choices;
+use self::list::List;
+
 pub mod choices;
 pub mod list;
 pub mod write;
+pub mod read;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
@@ -17,7 +19,6 @@ pub struct Config {
 }
 
 impl Config {
-    /// Creates a new [`Config`].
     pub fn new(
         tasks: Option<Resource>,
         time: Option<Resource>,
