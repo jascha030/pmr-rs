@@ -47,7 +47,7 @@ impl Choices for Config {
 
 impl List for Config {
     fn count(&self) -> usize {
-        return self.list().len();
+        self.list().len()
     }
 
     fn list(&self) -> Vec<&Resource> {
