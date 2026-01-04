@@ -8,16 +8,11 @@ use colored::Colorize;
 use std::process::ExitCode;
 
 fn main() -> ExitCode {
-    return match Command::parse().run() {
+    match Command::parse().run() {
         Ok(()) => ExitCode::SUCCESS,
         Err(e) => {
-            eprintln!(
-                "{}",
-                format!("Pmr Error: {}", e.to_string().red().bold())
-                    .to_string()
-                    .red()
-            );
+            eprintln!("{} {}", "Pmr Error:".red(), e.to_string().red().bold());
             ExitCode::FAILURE
         }
-    };
+    }
 }

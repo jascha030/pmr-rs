@@ -36,7 +36,7 @@ impl Run for Open {
 
         match get_config() {
             Ok(config) => {
-                if all == true {
+                if all {
                     for res in config.list() {
                         res.open().unwrap();
                     }
@@ -57,10 +57,11 @@ impl Run for Open {
                                 res.open().unwrap();
                             }
                         }
-                        false => match config.list().into_iter().nth(opt) {
-                            Some(r) => r.open().unwrap(),
-                            None => (),
-                        },
+                        false => {
+                            if let Some(r) = config.list().into_iter().nth(opt) {
+                                r.open().unwrap()
+                            }
+                        }
                     },
                     None => panic!("Something went wrong..."),
                 }

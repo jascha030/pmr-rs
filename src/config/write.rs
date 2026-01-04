@@ -12,7 +12,7 @@ pub fn write_toml(config: &Config) -> Result<()> {
 
     let toml_string = toml::to_string(&config).unwrap();
 
-    file.write_all(&toml_string.as_bytes())
+    file.write_all(toml_string.as_bytes())
         .expect("Unable to write to file");
 
     Ok(())
