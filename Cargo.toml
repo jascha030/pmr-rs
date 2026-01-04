@@ -1,7 +1,7 @@
 [package]
 name = "pmr"
 description = "A small project management CLI utility, to store project management related links."
-version = "0.1.0"
+version = "0.1.1"
 repository = "https://github.com/jascha030/pmr-rs"
 homepage = "https://github.com/jascha030/pmr-rs"
 edition = "2024"
